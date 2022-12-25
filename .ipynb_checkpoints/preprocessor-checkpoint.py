@@ -12,3 +12,9 @@ def dir_explorer(path):
     for path,names,filenames in os.walk(path):
         print(f'There are {len(names)} folderes and {len(filesnames)} files in {path}')
         
+        
+# 3) Custom function i use for some weired reasons.
+def giver():
+    import re
+    from datetime import datetime
+    return re.sub('[:, ,.,-]',"",str(datetime.now()))
