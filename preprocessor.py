@@ -10,15 +10,32 @@ def unzip_rawdata(path):
 def dir_explorer(path):
     import os
     import matplotlib.pyplot
-    a = {'train': 0
-        ,'test': 0}
+    pie = {'train': 0,'test': 0}
+    value = {'train':[],'test':[]}
+    label = {'train':[],'test':[]}
     for path,names,filenames in os.walk(path):
-        print(f'There are {len(names)} folderes and {len(filenames)} files in {path}')
         if 'train' in path:
-            a['train'] += len(filenames)
+            pie['train'] += len(filenames)
+            value['train'].append(len(filenames))
+            label['train'].append(path.split('/')[-1])
         else:
-            a['test'] += len(filenames)
-    return a
+            pie['test'] += len(filenames)
+            value['test'].append(len(filenames))
+            label['test'].append(path.split('/')[-1])
+    matplotlib.pyplot.figure(figsize=(9,9))
+    matplotlib.pyplot.pie([pie['train'],pie['test']],labels=pie.keys(),autopact='%.1f%%')
+    matplotlib.pyplot.title('Train vs Test')
+    matplotlib.pyplot.show()
+    matplotlib.pyplot.figure(figsize=(9,9))
+    matplotlib.pyplot.pie([value['train']],autopct=lambda p : '{:.2f}%  ({:,.0f})'.format(p,p * sum(value['train'])/100),labels=label['train'])
+    matplotlib.pyplot.title('Contents of training dataset')
+    matplotlib.pyplot.show()
+    matplotlib.pyplot.figure(figsize=(9,9))
+    matplotlib.pyplot.pie([value['test']],autopct=lambda p : '{:.2f}%  ({:,.0f})'.format(p,p * sum(value['test'])/100),labels=label['test'])
+    matplotlib.pyplot.title('Contents of testing dataset')
+    matplotlib.pyplot.show()
+    
+    
     
         
         
