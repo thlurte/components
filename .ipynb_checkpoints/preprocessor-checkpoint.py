@@ -10,6 +10,8 @@ def unzip_rawdata(path):
 def dir_explorer(path):
     import os
     import matplotlib.pyplot
+    import warnings
+    warnings.filterwarnings("ignore")
     pie = {'train': 0,'test': 0}
     value = {'train':[],'test':[]}
     label = {'train':[],'test':[]}
@@ -34,10 +36,6 @@ def dir_explorer(path):
     matplotlib.pyplot.pie([value['test']],autopct=lambda p : '{:.2f}%  ({:,.0f})'.format(p,p * sum(value['test'])/100),labels=label['test'])
     matplotlib.pyplot.title('Contents of testing dataset')
     matplotlib.pyplot.show()
-    
-    
-    
-        
         
 # 3) Custom function i use for some weired reasons.
 def giver():
