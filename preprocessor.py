@@ -24,7 +24,7 @@ def dir_explorer(path):
             pie['test'] += len(filenames)
             value['test'].append(len(filenames))
             label['test'].append(path.split('/')[-1])
-    matplotlib.pyplot.figure(figsize=(9,9))
+    matplotlib.pyplot.figure(figsize=(16,16))
     matplotlib.pyplot.subplot(1,3,1)
     matplotlib.pyplot.pie([pie['train'],pie['test']],labels=pie.keys(),autopct='%.1f%%')
     matplotlib.pyplot.title('Train vs Test')
