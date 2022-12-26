@@ -45,7 +45,34 @@ def giver():
 # 4) Custom call-back function for tensorflow board
 def tensorboard_callback(dir_name,exp_name):
     import tensorflow
+    import datetime
     log_dir = dir_name + "/" + exp_name + "/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = tensorflow.keras.callbacks.TensorBoard(log_dir=log_dir)
     print(f"Saving TensorBoard log files to: {log_dir}")
     return tensorboard_callback
+
+# 5) Custom evaluation function to plot loss curve
+def loss_curve(history):
+    import matplotlib.pyplot
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    #
+    accuracy = history.history['accuracy']
+    val_accuracy = history.history['val_accuracy']
+    #
+    epochs = range(len(history.history['loss']))
+    
+    # Plot loss curve
+    matplotlib.pyplot.plot(epochs, loss, label='training_loss')
+    matplotlib.pyplot.plot(epochs, val_loss, label='val_loss')
+    matplotlib.pyplot.title('Loss')
+    matplotlib.pyplot.xlabel('Epochs')
+    matplotlib.pyplot.legend()
+
+    # Plot accuracy
+    matplotlib.pyplot.figure()
+    matplotlib.pyplot.plot(epochs, accuracy, label='training_accuracy')
+    matplotlib.pyplot.plot(epochs, val_accuracy, label='val_accuracy')
+    matplotlib.pyplot.title('Accuracy')
+    matplotlib.pyplot.xlabel('Epochs')
+    matplotlib.pyplot.legend();
