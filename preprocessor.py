@@ -4,7 +4,9 @@ def unzip_rawdata(path):
     rawdata = zipfile.ZipFile(path)
     rawdata.extractall()
     rawdata.close()
-    
+
+
+# asdadasdasd
 
 # 2) Function that gives a vague idea of what is in a dataset
 def dir_explorer(path):
@@ -35,7 +37,7 @@ def dir_explorer(path):
     matplotlib.pyplot.pie([value['test']],autopct=lambda p : '{:.0f}%  ({:,.0f})'.format(p,p * sum(value['test'])/100),labels=label['test'])
     matplotlib.pyplot.title('Contents of testing dataset')
     matplotlib.pyplot.show()
-        
+
 # 3) Custom function i use for some unknown reasons.
 def giver():
     import re
@@ -61,7 +63,7 @@ def loss_curve(history):
     val_accuracy = history.history['val_accuracy']
     #
     epochs = range(len(history.history['loss']))
-    
+
     # Plot loss curve
     matplotlib.pyplot.plot(epochs, loss, label='training_loss')
     matplotlib.pyplot.plot(epochs, val_loss, label='val_loss')
